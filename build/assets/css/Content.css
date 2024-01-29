@@ -72,9 +72,10 @@
 
 .home-btn span {}
 
-.home-btn a {
+.home-btn p {
     color: #fff;
     font-weight: 600;
+    cursor: pointer;
 }
 
 .home-btn span i {
@@ -87,10 +88,11 @@
     border-radius: 50px;
 }
 
-.sign-btn a {
+.sign-btn p {
     color: #fff;
     padding: 0 0 0 25px;
     font-weight: 600;
+    cursor: pointer;
 }
 
 .sign-btn span {}
@@ -135,10 +137,11 @@
     font-family: 'Unbounded';
 }
 
-.shop-btn a {
+.shop-btn p {
     color: #fff;
-    border-bottom: solid 1px;
+    padding: 10px 0;
     font-size: 12px;
+    cursor: pointer;
 }
 
 /* ------------------------------------------------------- */
