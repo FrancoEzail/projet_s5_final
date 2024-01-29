@@ -19,7 +19,9 @@ function CompLogin() {
             <div className="comp-log">
                 <div className="have-account">
                     <p>Pas de compte? 
-                        <span>S' inscrire</span>
+                        <NavLink to="/inscription">
+                            <span>S' inscrire</span>
+                        </NavLink>
                     </p>
                 </div>
                 <div className="login-title">
@@ -38,7 +40,9 @@ function CompLogin() {
                     <div className='icon-btn-log'>
                         <span><i className='fas fa-angle-double-right'></i></span>
                     </div>
-                        <input type="submit" value="Se connecter"/>
+                        <NavLink to="/accueil">
+                            <input type="submit" value="Se connecter"/>
+                        </NavLink>
                     </div>
                 </div>
             </div>
@@ -65,7 +69,9 @@ function CompInscrit() {
             <div className="comp-log">
                 <div className="have-account">
                     <p>Deja inscrit? 
-                        <span>Se connecter</span>
+                        <NavLink to="/login">
+                            <span>Se connecter</span>
+                        </NavLink>
                     </p>
                 </div>
                 <div className="form-group-log">
@@ -82,10 +88,12 @@ function CompInscrit() {
                         <input type="password" name="" id="" placeholder="Confirmer Mot de passe"/>
                     </div>
                     <div className='btn-log'>
-                        <div className='icon-btn-log'>
-                            <span><i className='fas fa-angle-double-right'></i></span>
-                        </div>
-                            <input type="submit" value="S' inscrire"/>
+                    <div className='icon-btn-log'>
+                        <span><i className='fas fa-angle-double-right'></i></span>
+                    </div>
+                    <NavLink to="/accueil">
+                        <input type="submit" value="S' inscrire"/>
+                    </NavLink>
                     </div>
                 </div>
             </div>

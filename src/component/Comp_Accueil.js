@@ -1,7 +1,7 @@
 import React, { useState, useCallback  } from 'react';
 import data_img from '../data_img';
 import { useDropzone } from 'react-dropzone';
-// import { NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const UploadImage = () => {
     const [uploadedFile, setUploadedFile] = useState(null);
@@ -148,11 +148,13 @@ function CompProfil() {
     return(
         <div className="profil-box">
             <div className="profil-img">
+                <NavLink to="/profil">
                 {
                     data_img.map((profil, index) => (
                         <img src={profil.profil} alt=""/>            
                     ))
                 }  
+                </NavLink>
             </div>
             <div className="profil-card">
                 <div className="nom-email">

@@ -7,15 +7,15 @@ function Profil() {
         <>
             <Header />
             <div className="container-profil">
-                <div className="left-section">
+                <div className="left-section-2">
                    <CompProfil />
                    <CompParcelleCulture />
                 </div>
-                <div className="center-section">
+                <div className="center-section-2">
                    <CompParcelleDetail />
                    <CompHistorique />
                 </div>
-                <div className="right-section">
+                <div className="right-section-2">
                   <CompDiscu />
                 </div>
             </div>

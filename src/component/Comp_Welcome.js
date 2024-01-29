@@ -1,6 +1,6 @@
 import React from "react";
 import data_img from '../data_img';
-// import { NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 function CompWelcome() {
     return (
         <div className="welcome">
@@ -11,10 +11,14 @@ function CompWelcome() {
             </div>
             <div className="welc-group-btn">
                 <div className="home-btn">
+                <NavLink to="/accueil">
                     <p>Home <span><i className="fas fa-home"></i></span></p>
+                </NavLink>
                 </div>
                 <div className="sign-btn">
+                    <NavLink to="/login">
                       <p>Sign in<span><i className="fas fa-arrow-right"></i></span></p>  
+                    </NavLink>
                 </div>
             </div>
         </div>

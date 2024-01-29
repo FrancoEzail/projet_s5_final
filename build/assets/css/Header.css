@@ -4,7 +4,8 @@ header{
 .header-box{
     display: flex;
     justify-content: space-between;
-    margin: 20px 55px;
+    align-items: center;
+    margin: 10px 55px;
     color: #fff;
 }
 
@@ -33,5 +34,36 @@ header{
 }
 
 .user-icon span {
+
+}
+
+.header_bar {
+}
+
+.header_bar .header_links {}
+
+.header_bar .header_links ul {
+    display: flex;
+    align-items: center;
+}
+
+.header_bar .header_links ul li {
+    margin: 0 5px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.header_bar .header_links ul li {
+    color: #fff;
+    border-radius: 50px;
+    padding: 15px;
+    cursor: pointer;
+    font-family: 'Poppins';
+}
+.header_bar .header_links ul li:hover {
+    text-decoration: underline;
+}
+
+.header_bar .header_links ul li.active {
 
 }
