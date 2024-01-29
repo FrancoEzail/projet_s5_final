@@ -854,10 +854,11 @@ tbody {
     color: rgba(255, 255, 255, 0.5);
 }
 
-.have-account p span a{
+.have-account p span{
     color: #B0C09B;
     font-family: 'Poppins2';
     padding: 0 10px;
+    cursor: pointer;
 }
 
 .login-title {
