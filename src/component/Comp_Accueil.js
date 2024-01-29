@@ -1,7 +1,7 @@
 import React, { useState, useCallback  } from 'react';
 import data_img from '../data_img';
 import { useDropzone } from 'react-dropzone';
-import { NavLink } from 'react-router-dom';
+// import { NavLink } from 'react-router-dom';
 
 const UploadImage = () => {
     const [uploadedFile, setUploadedFile] = useState(null);
@@ -71,10 +71,10 @@ function CompFiltre() {
             <nav className='_bar'>
                 <div className="_links">
                     <ul>
-                        <li className={boutonActif === 1 ? 'active' : ''} onClick={() => handleClick(1)}><a>All</a></li>
-                        <li className={boutonActif === 2 ? 'active' : ''} onClick={() => handleClick(2)}><a>Rice</a></li>
-                        <li className={boutonActif === 3 ? 'active' : ''} onClick={() => handleClick(3)}><a>Corn</a></li>
-                        <li className={boutonActif === 4 ? 'active' : ''} onClick={() => handleClick(4)}><a>Vegetable</a></li>
+                        <li className={boutonActif === 1 ? 'active' : ''} onClick={() => handleClick(1)}>All</li>
+                        <li className={boutonActif === 2 ? 'active' : ''} onClick={() => handleClick(2)}>Rice</li>
+                        <li className={boutonActif === 3 ? 'active' : ''} onClick={() => handleClick(3)}>Corn</li>
+                        <li className={boutonActif === 4 ? 'active' : ''} onClick={() => handleClick(4)}>Vegetable</li>
                     </ul>
                 </div>
             </nav>

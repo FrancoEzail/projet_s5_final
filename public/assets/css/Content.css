@@ -22,7 +22,9 @@
 }
 
 .right-section {
-
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 
@@ -151,6 +153,7 @@
 .container-accueil {
     display: flex;
     width: 92%;
+    height: 92%;
     justify-content: space-evenly;
 }
 
@@ -216,16 +219,17 @@
     font-weight: 600;
 }
 
-._bar ._links ul li a {
+._bar ._links ul li {
     border: solid 1px #fff;
     color: #fff;
     border-radius: 50px;
     padding: 15px 25px;
     text-transform: uppercase;
     cursor: pointer;
+    font-family: 'Poppins';
 }
 
-._bar ._links ul li.active a {
+._bar ._links ul li.active {
     background: #fff;
     color: #191919;
 }
@@ -380,7 +384,6 @@
 .card-form {
     width: 320px;
     height: 420px;
-    margin: 10px 0;
     padding: 30px;
     border-radius: 30px;
     background: #fff;
