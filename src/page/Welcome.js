@@ -1,13 +1,13 @@
 import React from "react";
 import Header from "../component/Comp_Header";
-import { Comp_Welcome, Comp_Card_Shop } from "../component/Comp_Welcome";
+import { CompWelcome, CompCardShop } from "../component/Comp_Welcome";
 import data_img from "../data_img";
 function Welcome() {
     return(
         <div id="container">
             <Header></Header>
             <div className="container-welcome">
-                <Comp_Welcome></Comp_Welcome>
+                <CompWelcome></CompWelcome>
                 <div className="right-img">
                     {
                         data_img.map((parcel, index) => (
@@ -17,9 +17,9 @@ function Welcome() {
                 </div>
             </div>
             <div className="card-list">
-                <Comp_Card_Shop></Comp_Card_Shop>
-                <Comp_Card_Shop></Comp_Card_Shop>
-                <Comp_Card_Shop></Comp_Card_Shop>
+                <CompCardShop></CompCardShop>
+                <CompCardShop></CompCardShop>
+                <CompCardShop></CompCardShop>
             </div>
         </div>
     );
