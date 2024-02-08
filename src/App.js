@@ -16,7 +16,8 @@ function App() {
           <Route path='/inscription' exact element={<Inscrit />} />
           <Route path='/accueil/:userId' exact element={<Accueil />} />
           <Route path='/accueil/' exact element={<Accueil />} />
-          <Route path='/profil' exact element={<Profil />} />
+          <Route path='/profil/:userId' exact element={<Profil />} />
+          <Route path='/profil/' exact element={<Profil />} />
         </Routes>
       </BrowserRouter>
     </div>

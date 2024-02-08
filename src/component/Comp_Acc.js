@@ -1,7 +1,26 @@
 import React, { useState, useEffect } from 'react';
-import data_img from '../data_img';
 import { NavLink, useParams } from 'react-router-dom';
 import axios from "axios";
+import saryTer from "./image/1.png";
+import saryParc from "./image/parcelle.png";
+import saryProfil from "./image/profil.jpeg";
+
+export const fetchData = async (apiUrl) => {
+    try {
+      const response = await fetch(apiUrl);
+  
+      if (!response.ok) {
+        throw new Error("Erreur lors de la récupération des données");
+      }
+  
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error("Erreur de requête :", error);
+      throw error;
+    }
+};
+
 function CompSubTitle() {
     return(
         <div className="sub-title">
@@ -24,6 +43,18 @@ function CompFiltre() {
           setBoutonActif(bouton);
         }, 100);
     };
+    const [allTerrain, setAllTerrain] = useState([]);
+    useEffect(() => {
+        const fetchAllData = async () => {
+          try {
+            const dataTerrain = await fetchData("https://farm-production.up.railway.app/terrain/all");
+            setAllTerrain(dataTerrain);
+          } catch (error) {
+
+          }
+        };
+        fetchAllData();
+    }, []); 
     return(
         <div className="fitlre-box">
             <nav className='_bar'>
@@ -36,67 +67,35 @@ function CompFiltre() {
                     </ul>
                 </div>
             </nav>
-            <div className="table-culture">
+            <div className="filtre-box2"  style={{ margin: '10px 0' }}>
                 <div className='right-arrow'>
+                    <div className='table-title'>
+                        <h3>Details parcelle</h3>
+                    </div>
                     <span><i className="fas fa-arrow-right"></i></span>
                 </div>
-                <div className="tableau_style">
-                    <div className='title_bar'>
-                        <div className='title_links'>
-                            <ul>
-                                <li>Proprio</li>
-                                <li>Parcelle</li>
-                                <li>Culture</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div className="limit-scroll">
-                        <div className='list_bar'>
-                            <div className='list_links'>
-                                <ul>
-                                    <li>Jean Rakoto</li>
-                                    <li>P1</li>
-                                    <li>Rice</li>
-                                    <li><span><i className="far fa-comment"></i></span></li>
-                                    <li><span><i className="fas fa-microphone"></i></span></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div className='list_bar'>
-                            <div className='list_links'>
-                                <ul>
-                                    <li>Jean Rakoto</li>
-                                    <li>P1</li>
-                                    <li>Rice</li>
-                                    <li><span><i className="far fa-comment"></i></span></li>
-                                    <li><span><i className="fas fa-microphone"></i></span></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div className='list_bar'>
-                            <div className='list_links'>
-                                <ul>
-                                    <li>Jean Rakoto</li>
-                                    <li>P1</li>
-                                    <li>Rice</li>
-                                    <li><span><i className="far fa-comment"></i></span></li>
-                                    <li><span><i className="fas fa-microphone"></i></span></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div className='list_bar'>
-                            <div className='list_links'>
-                                <ul>
-                                    <li>Jean Rakoto</li>
-                                    <li>P1</li>
-                                    <li>Rice</li>
-                                    <li><span><i className="far fa-comment"></i></span></li>
-                                    <li><span><i className="fas fa-microphone"></i></span></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <div className="limit-scroll-2">
+                <table className="tableau_style">
+                    <thead>
+                        <tr>
+                            <th>Proprio</th>
+                            <th>Terrain</th>
+                            <th>Nombre Parcelle</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {allTerrain.map((terrain, index) => (
+                            <tr key={index}>
+                                <td>{terrain.idUtilisateur}</td>                    
+                                <td>{terrain.id}</td>
+                                <td>{terrain.nbParcelle}</td>
+                                <td><span><i className="far fa-comment"></i></span></td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+                </div>  
             </div>
         </div>
     );
@@ -120,12 +119,8 @@ function CompProfil() {
     return(
         <div className="profil-box">
             <div className="profil-img">
-                <NavLink to="/profil">
-                {
-                    data_img.map((profil, index) => (
-                        <img src={profil.profil} alt=""/>            
-                    ))
-                }  
+                <NavLink to={`/profil/${userId}`}>
+                    <img src={saryProfil} alt=""/>            
                 </NavLink>
             </div>
             <div className="profil-card">
@@ -144,6 +139,50 @@ function CompProfil() {
 }
 
 function CompFormulaire() {
+    const [allRegion, setAllRegion] = useState([]);
+    useEffect(() => {
+        const fetchAllData = async () => {
+          try {
+            const dataRegion = await fetchData("https://farm-production.up.railway.app/loc/all");
+            setAllRegion(dataRegion);
+          } catch (error) {
+
+          }
+        };
+    
+        fetchAllData();
+    }, []); 
+
+    // const navigate = useNavigate();
+    const[nbrParcelle, setNbrParcelle] = useState(0);
+    const[loc, setLoc] = useState("loc1");
+    const[descrit, setDescrit] = useState("");
+    const { userId } = useParams();
+
+    const handleNbrChange = (e) => {
+        setNbrParcelle(parseInt(e.target.value));
+    }
+
+    const handleLocChange = (e) => {
+        setLoc(e.target.value);
+    }
+
+    const handleDescritChange = (e) => {
+        setDescrit(e.target.value);
+    }
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            console.log(loc);
+            console.log(descrit);
+            console.log(userId);
+            console.log(nbrParcelle);
+            // const response = await axios.get(`https://farm-production.up.railway.app/terrain/create/${loc}/${descrit}/${userId}/${nbrParcelle}`);
+            // console.log(response.data);
+        } catch (error) {
+            console.error("Error:", error);
+        }
+    };
     return(
         <div className="card-form">
             <div className="sub-title-form">
@@ -154,21 +193,27 @@ function CompFormulaire() {
                 </div>
             </div>
             <div className="form-group">
-                <div className="form-input">
-                    <select name="">
-                        <option value="">Lieu</option>
-                        <option value="">Marovoay</option>
-                    </select>
-                </div>
-                <div className="form-input">
-                    <input type="text" placeholder="Nombre de parcelle" name=""/>
-                </div>
-                <div className='sub-btn'>
-                    <input type="submit" value="Valider" />
-                    <div className='right-arrow-btn'>
-                        <span><i className="fas fa-arrow-right"></i></span>
+                <form onSubmit={handleSubmit}>
+                    <div className="form-input">
+                        <select name="loc" onChange={handleLocChange} value={loc}>
+                        {allRegion.map((region, index) => (
+                            <option key={region.id} value={region.id}>{region.nom}</option>
+                        ))}
+                        </select>
                     </div>
-                </div>
+                    <div className="form-input">
+                        <input type="number" placeholder="Nombre de parcelle" name="nbrParcelle" onChange={handleNbrChange} />
+                    </div>
+                    <div className="form-input">
+                        <input type="text" placeholder='Description' name='descrit' onChange={handleDescritChange} />
+                    </div>
+                    <div className='sub-btn'>
+                        <input type="submit" value="Valider" />
+                        <div className='right-arrow-btn'>
+                            <span><i className="fas fa-arrow-right"></i></span>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     );   
@@ -178,11 +223,7 @@ function CompCard() {
     return(
         <div className='card-pub'>
             <div className='card_pub-img'>
-            {
-                data_img.map((katsaka, index) => (
-                    <img src={katsaka.katsaka} alt=""/>            
-                ))
-            }  
+                <img src={saryTer} alt=""/>            
             </div>
             <div className='descrit'>
                 <div className='left-descrit'>
@@ -201,11 +242,7 @@ function CompCard() {
 function CompImg() {
     return(
         <div className='sary'>
-        {
-            data_img.map((parcelle, index) => (
-                <img src={parcelle.parcelle} alt=""/>            
-            ))
-        } 
+            <img src={saryParc} alt=""/>            
         </div>
     );
 }
