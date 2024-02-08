@@ -1,48 +1,7 @@
-import React, { useState, useCallback  } from 'react';
+import React, { useState, useEffect } from 'react';
 import data_img from '../data_img';
-import { useDropzone } from 'react-dropzone';
-import { NavLink } from 'react-router-dom';
-
-const UploadImage = () => {
-    const [uploadedFile, setUploadedFile] = useState(null);
-
-    const onDrop = useCallback((acceptedFiles) => {
-        const file = acceptedFiles[0];
-        setUploadedFile(file);
-    }, []);
-
-    const { getRootProps, getInputProps } = useDropzone({ onDrop });
-
-    return (
-        <div>
-            <div {...getRootProps()} className="dropzone-style">
-                <input {...getInputProps()} />
-                {uploadedFile ? (
-                    <div className='image-uploaded'>
-                        <img
-                            src={URL.createObjectURL(uploadedFile)}
-                            alt="type de fichier invalide"
-                            style={{
-                                width: '100%',
-                                maxHeight: '150px',
-                                borderRadius: '15px',
-                                display: 'flex',
-                                alignItems:'center'
-                            }}
-                        />
-                    </div>
-                ) : null}
-                {!uploadedFile && (
-                    <>
-                        <p>Drag and drop an image or clicked here</p>
-                        <span><i className='fas fa-image'></i></span>
-                    </>
-                )}
-            </div>
-        </div>
-    );
-};
-
+import { NavLink, useParams } from 'react-router-dom';
+import axios from "axios";
 function CompSubTitle() {
     return(
         <div className="sub-title">
@@ -57,7 +16,6 @@ function CompSubTitle() {
         </div>
     );   
 }
-
 
 function CompFiltre() {
     const [boutonActif, setBoutonActif] = useState(1);
@@ -145,6 +103,21 @@ function CompFiltre() {
 }
 
 function CompProfil() {
+    const [users, setUsers] = useState(null);
+    const {userId}  = useParams();
+    console.log(userId);
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const response = await axios.get(`https://farm-production.up.railway.app/user/${userId}`);
+            setUsers(response.data);
+          } catch (error) {
+            console.error('Erreur lors de la récupération des données:', error);
+          }
+        };
+    
+        fetchData();
+      }, [userId]);
     return(
         <div className="profil-box">
             <div className="profil-img">
@@ -157,10 +130,12 @@ function CompProfil() {
                 </NavLink>
             </div>
             <div className="profil-card">
-                <div className="nom-email">
-                    <h5>Jean Rakoto</h5>
-                    <p>jean@gmail.com</p>
-                </div>
+                {users && (
+                    <div className="nom-email">
+                        <h5>{users.nom}</h5>
+                        <p>{users.email}</p>
+                    </div>
+                )}
                 <div className='ellipsis'>
                     <span><i className="fas fa-ellipsis-v"></i></span>
                 </div>
@@ -188,9 +163,6 @@ function CompFormulaire() {
                 </div>
                 <div className="form-input">
                     <input type="text" placeholder="Nombre de parcelle" name=""/>
-                </div>
-                <div className="upload-photo">
-                    <UploadImage  />
                 </div>
                 <div className='sub-btn'>
                     <input type="submit" value="Valider" />
