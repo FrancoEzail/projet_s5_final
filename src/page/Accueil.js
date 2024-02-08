@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "../component/Comp_Header";
-import {CompSubTitle, CompFiltre, CompProfil, CompFormulaire, CompCard, CompImg} from "../component/Comp_Accueil";
+import {CompSubTitle, CompFiltre, CompProfil, CompFormulaire, CompCard, CompImg} from "../component/Comp_Acc";
 function Accueil() {
     return(
         <>

@@ -5,6 +5,7 @@ import Accueil from './page/Accueil';
 import Profil from './page/Profil';
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
 function App() {
+
   return (
     <div className="App">
       <BrowserRouter>
@@ -14,6 +15,7 @@ function App() {
           <Route path='/login' exact element={<Login />} />
           <Route path='/inscription' exact element={<Inscrit />} />
           <Route path='/accueil/:userId' exact element={<Accueil />} />
+          <Route path='/accueil/' exact element={<Accueil />} />
           <Route path='/profil' exact element={<Profil />} />
         </Routes>
       </BrowserRouter>

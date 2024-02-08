@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "../component/Comp_Header";
 import {CompParcelleCulture, CompParcelleDetail, CompHistorique, CompDiscu} from "../component/Comp_Profil";
-import { CompProfil } from "../component/Comp_Accueil";
+import { CompProfil } from "../component/Comp_Acc";
 function Profil() {
     return(
         <>

@@ -105,7 +105,6 @@ function CompFiltre() {
 function CompProfil() {
     const [users, setUsers] = useState(null);
     const {userId}  = useParams();
-    console.log(userId);
     useEffect(() => {
         const fetchData = async () => {
           try {
