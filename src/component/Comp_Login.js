@@ -1,6 +1,35 @@
-import React from "react";
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import axios from "axios";
 function CompLogin() {
+    const navigate = useNavigate();
+    const [email, setEmail] = useState(""); 
+    const [mdp, setMdp] = useState("");
+    const handleEmailChange = (e) => {
+        setEmail(e.target.value);
+    };
+
+    const handleMdpChange = (e) => {
+        setMdp(e.target.value);
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await axios.get(`https://farm-production.up.railway.app/user/${email}/${mdp}`);
+            const userId = response.data.id;
+            const userNom = response.data.nom;
+            const userEmail = response.data.email;
+            
+            localStorage.setItem('userId', userId);
+            localStorage.setItem('userNom', userNom);
+            localStorage.setItem('userEmail', userEmail);
+            navigate(`/accueil/${userId}`);
+            
+        } catch (error) {
+            
+        }
+    };
     return(
         <div className="login-card">
             <div className='head-log'>
@@ -30,20 +59,20 @@ function CompLogin() {
                     <h1 className="stroke-text">moderne</h1>
                 </div>
                 <div className="form-group-log">
-                    <div className="form-input-log">
-                        <input type="email" name="" id="" placeholder="Entrer votre Email"/>
-                    </div>
-                    <div className="form-input-log">
-                        <input type="password" name="" id="" placeholder="Entrer votre Mot de passe"/>
-                    </div>
-                    <div className='btn-log'>
-                    <div className='icon-btn-log'>
-                        <span><i className='fas fa-angle-double-right'></i></span>
-                    </div>
-                        <NavLink to="/accueil">
+                    <form onSubmit={handleSubmit}>
+                        <div className="form-input-log">
+                            <input type="email" id="" placeholder="Entrer votre Email" onChange={handleEmailChange} />
+                        </div>
+                        <div className="form-input-log">
+                            <input type="password" id="" placeholder="Entrer votre Mot de passe" onChange={handleMdpChange}/>
+                        </div>
+                        <div className='btn-log'>
+                        <div className='icon-btn-log'>
+                            <span><i className='fas fa-angle-double-right'></i></span>
+                        </div>
                             <input type="submit" value="Se connecter"/>
-                        </NavLink>
-                    </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

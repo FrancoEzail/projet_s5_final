@@ -8,12 +8,12 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Routes>
+        <Routes> 
           <Route path='/' exact element={<Welcome />} />
           <Route path='/home' exact element={<Welcome />} />
           <Route path='/login' exact element={<Login />} />
           <Route path='/inscription' exact element={<Inscrit />} />
-          <Route path='/accueil' exact element={<Accueil />} />
+          <Route path='/accueil/:userId' exact element={<Accueil />} />
           <Route path='/profil' exact element={<Profil />} />
         </Routes>
       </BrowserRouter>
