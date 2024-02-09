@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 import axios from "axios";
 function CompLogin() {
     const navigate = useNavigate();
-    const [email, setEmail] = useState(""); 
-    const [mdp, setMdp] = useState("");
+    const [email, setEmail] = useState("toky@gmail.com"); 
+    const [mdp, setMdp] = useState("toky");
     const handleEmailChange = (e) => {
         setEmail(e.target.value);
     };
@@ -61,10 +61,10 @@ function CompLogin() {
                 <div className="form-group-log">
                     <form onSubmit={handleSubmit}>
                         <div className="form-input-log">
-                            <input type="email" id="" placeholder="Entrer votre Email" onChange={handleEmailChange} />
+                            <input type="email" id="" placeholder="toky@gmail.com" onChange={handleEmailChange} />
                         </div>
                         <div className="form-input-log">
-                            <input type="password" id="" placeholder="Entrer votre Mot de passe" onChange={handleMdpChange}/>
+                            <input type="password" id="" placeholder="...." onChange={handleMdpChange}/>
                         </div>
                         <div className='btn-log'>
                         <div className='icon-btn-log'>
